@@ -69,54 +69,70 @@ function IngredientesCRUD() {
     setEditando(null);
   }
 
-  // REGISTRAR O ACTUALIZAR INGREDIENTES
-  async function guardarIngrediente(e) {
-    e.preventDefault();
-    setMensaje("");
+  
+// REGISTRAR O ACTUALIZAR INGREDIENTES
+async function guardarIngrediente(e) {
+  e.preventDefault();
+  setMensaje("");
 
-    const ingrediente = {
-      nombre: form.nombre.trim(),
-      cantidad: Number(form.cantidad),
-      unidad: form.unidad.trim(),
-      precio: Number(form.precio)
-    };
-
-    setCargando(true);
-
-    let error;
-
-    if (editando !== null) {
-      // Actualizamos el ingrediente seleccionado.
-      const resultado = await supabase
-        .from("ingredientes")
-        .update(ingrediente)
-        .eq("id", editando);
-
-      error = resultado.error;
-    } else {
-      // Registramos un nuevo ingrediente.
-      const resultado = await supabase
-        .from("ingredientes")
-        .insert([ingrediente]);
-
-      error = resultado.error;
-    }
-
-    if (error) {
-      setMensaje("Error al guardar: " + error.message);
-    } else {
-      setMensaje(
-        editando !== null
-          ? "Ingrediente actualizado correctamente."
-          : "Ingrediente registrado correctamente."
-      );
-
-      limpiarFormulario();
-      await consultarIngredientes();
-    }
-
-    setCargando(false);
+  if (!form.nombre.trim() || !form.unidad.trim()) {
+    setMensaje("Debes ingresar el nombre y la unidad.");
+    return;
   }
+
+  if (Number(form.cantidad) <= 0 || Number(form.precio) < 0) {
+    setMensaje("La cantidad debe ser mayor que cero y el precio no puede ser negativo.");
+    return;
+  }
+
+  const ingrediente = {
+    nombre: form.nombre.trim(),
+    cantidad: Number(form.cantidad),
+    unidad: form.unidad.trim(),
+    precio: Number(form.precio)
+  };
+
+  setCargando(true);
+
+  let resultado;
+
+  if (editando !== null) {
+    // Actualizamos el ingrediente seleccionado.
+    resultado = await supabase
+      .from("ingredientes")
+      .update(ingrediente)
+      .eq("id", editando)
+      .select("id");
+  } else {
+    // Registramos un nuevo ingrediente.
+    resultado = await supabase
+      .from("ingredientes")
+      .insert([ingrediente])
+      .select("id");
+  }
+
+  if (resultado.error) {
+    setMensaje("Error al guardar: " + resultado.error.message);
+
+  } else if (!resultado.data || resultado.data.length === 0) {
+    setMensaje(
+      "No se realizaron cambios. Verifica que tengas permisos de administrador."
+    );
+
+  } else {
+    setMensaje(
+      editando !== null
+        ? "Ingrediente actualizado correctamente."
+        : "Ingrediente registrado correctamente."
+    );
+
+    limpiarFormulario();
+    await consultarIngredientes();
+  }
+
+  setCargando(false);
+}
+
 
   // CARGAR LOS DATOS PARA EDITAR
   function editarIngrediente(ingrediente) {
@@ -132,30 +148,51 @@ function IngredientesCRUD() {
   }
 
   // ELIMINAR INGREDIENTES
-  async function eliminarIngrediente(id) {
-    const confirmar = window.confirm(
-      "¿Estás seguro de eliminar este ingrediente?"
-    );
+async function eliminarIngrediente(id) {
+  const confirmar = window.confirm(
+    "¿Estás seguro de eliminar este ingrediente?"
+  );
 
-    if (!confirmar) return;
+  if (!confirmar) return;
 
-    setCargando(true);
+  setCargando(true);
+  setMensaje("");
 
-    const { error } = await supabase
-      .from("ingredientes")
-      .delete()
-      .eq("id", id);
+  // Verificamos si el ingrediente está asociado a alguna receta.
+  const { count, error: errorConsulta } = await supabase
+    .from("producto_ingredientes")
+    .select("id", { count: "exact", head: true })
+    .eq("ingrediente_id", id);
 
-    if (error) {
-      setMensaje("Error al eliminar: " + error.message);
-    } else {
-      setMensaje("Ingrediente eliminado correctamente.");
-      await consultarIngredientes();
-    }
-
+  if (errorConsulta) {
+    setMensaje("Error al verificar el ingrediente: " + errorConsulta.message);
     setCargando(false);
+    return;
   }
 
+  if (count > 0) {
+    setMensaje(
+      "No se puede eliminar este ingrediente porque está asociado a una o varias recetas."
+    );
+    setCargando(false);
+    return;
+  }
+
+  // Si no está asociado, procedemos a eliminarlo.
+  const { error } = await supabase
+    .from("ingredientes")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    setMensaje("Error al eliminar: " + error.message);
+  } else {
+    setMensaje("Ingrediente eliminado correctamente.");
+    await consultarIngredientes();
+  }
+
+  setCargando(false);
+}
 
 return (
   <main className="ingredientes-contenedor">
