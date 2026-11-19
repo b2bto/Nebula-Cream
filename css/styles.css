@@ -1,0 +1,1058 @@
+/* Importo las fuentes que utilizo para darle al portafolio
+   ese estilo tecnológico que quiero mantener. */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+/* Aquí guardo los colores que utilizo en el portafolio.
+   Así puedo reutilizarlos en diferentes partes del CSS
+   sin tener que escribir el código de cada color nuevamente. */
+/* Colores principales de Nebula Cream */
+:root {
+    --fondo: #11131B;
+    --morado: #24002F;
+    --morado-claro: #A78BFA;
+    --neon: #20F5C5;
+    --neon-suave: #B5FFE9;
+    --rosa: #FF4FD8;
+    --texto: #F5F0FF;
+    --texto-secundario: #C7C1D8;
+}
+
+/* Aplico estos ajustes generales para quitar los espacios
+   que trae el navegador por defecto y tener mejor control
+   sobre el tamaño de los elementos. */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hago que el desplazamiento entre las diferentes secciones
+   sea más suave y dejo un espacio superior para que el menú
+   no tape el contenido al navegar. */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+/* Defino la apariencia general de toda la página:
+   el color de fondo, el color y tipo de letra, los tamaños
+   y algunos detalles del borde exterior. */
+/* Fondo espacial de Nebula Cream */
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: #F5F0FF;
+    font-family: Arial, sans-serif;
+
+    /* Creo dos círculos de luz usando degradados radiales */
+    background:
+        radial-gradient(circle at 15% 20%,
+            rgba(167, 139, 250, 0.22),
+            transparent 30%),
+        radial-gradient(circle at 85% 75%,
+            rgba(255, 79, 216, 0.16),
+            transparent 30%),
+        linear-gradient(135deg,
+            #11131B,
+            #1B1025,
+            #11131B);
+
+    background-attachment: fixed;
+}
+/* Mantengo los títulos con la fuente Orbitron
+   y el color neón para conservar la misma línea gráfica. */
+h1, h2, h3, h4 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--neon);
+    line-height: 1.3;
+}
+
+/* Defino el color de los enlaces y quito el subrayado
+   que aparece normalmente en el navegador. */
+a {
+    color: var(--neon);
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+/* Cambio ligeramente el color cuando paso el cursor
+   sobre un enlace. */
+a:hover {
+    color: var(--neon-suave);
+}
+/* Esta es la primera sección que se muestra al entrar
+   al portafolio. Organizo su contenido en columna y lo centro
+   para que el título y el texto sean lo primero que se vea. */
+#inicio {
+    min-height: 340px;
+    padding: 65px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid var(--neon);
+}
+
+/* Ajusto el título principal para que tenga un tamaño
+   que se adapte al espacio disponible y mantenga
+   su importancia dentro de la página. */
+#inicio h1 {
+    max-width: 1000px;
+    font-size: clamp(2.1rem, 6vw, 4.8rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -3px;
+    line-height: 1.15;
+    margin-bottom: 24px;
+
+    text-shadow: 0 0 16px rgba(32, 245, 197, 0.18);
+}
+
+/* Limito el ancho del texto para que sea más fácil
+   de leer y no ocupe demasiado espacio horizontal. */
+#inicio p {
+    max-width: 720px;
+    color: var(--texto-secundario);
+    margin-bottom: 12px;
+    font-size: 1.15rem;
+}
+
+/* Le doy apariencia de botón al enlace principal
+   que aparece en la sección de inicio. */
+#inicio > a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    border: 1px solid var(--neon);
+    border-radius: 3px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Cuando paso el cursor sobre el botón,
+   cambio el fondo y el color del texto y agrego un brillo. */
+#inicio > a:hover {
+    background-color: var(--neon);
+    color: var(--fondo);
+    box-shadow: 0 0 18px rgba(32, 245, 197, 0.4);
+}
+
+/* Aplico espacios internos y un borde inferior a las secciones
+   para mantener una separación entre cada parte del portafolio. */
+#sobre-mi,
+.seccion,
+#contacto {
+    padding: 55px 30px;
+    border-bottom: 1px solid var(--neon);
+}
+
+/* Mantengo los títulos de las secciones con tamaños similares
+   y un estilo que conserva la identidad visual del sitio. */
+#sobre-mi h2,
+.seccion h2,
+#contacto h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Ajusto los párrafos de la sección sobre mí para que
+   tengan un ancho cómodo y un espacio entre ellos. */
+#sobre-mi p {
+    max-width: 900px;
+    margin-bottom: 16px;
+    color: var(--texto-secundario);
+}
+
+/* Mantengo el mismo ancho y color para las descripciones
+   que aparecen en las diferentes secciones. */
+.seccion > p,
+.seccion-descripcion {
+    max-width: 900px;
+    margin-bottom: 28px;
+    color: var(--texto-secundario);
+}
+
+/* Organizo los proyectos en una cuadrícula.
+   La cantidad de columnas se ajusta dependiendo del espacio
+   disponible en la pantalla. */
+.proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 240px), 1fr)
+    );
+    gap: 16px;
+    margin-top: 30px;
+}
+
+/* Defino la apariencia de las tarjetas donde presento
+   cada uno de mis proyectos. */
+.proyecto-card {
+    background-color: var(--morado);
+    border: 1px solid var(--neon);
+    border-radius: 5px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+
+    /* Agrego una transición para que los cambios al pasar
+       el cursor se vean un poco más suaves. */
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Al pasar el cursor sobre una tarjeta,
+   esta sube ligeramente, cambia de color y muestra un brillo. */
+.proyecto-card:hover {
+    transform: translateY(-5px);
+    background-color: var(--morado-claro);
+    box-shadow: 0 0 16px rgba(32, 245, 197, 0.15);
+}
+
+/* Ajusto los títulos y textos que aparecen dentro
+   de las tarjetas de proyectos. */
+.proyecto-card h3 {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.proyecto-card p {
+    color: var(--texto-secundario);
+}
+
+.proyecto-card strong {
+    color: var(--neon-suave);
+}
+
+/* Dejo los enlaces al final de las tarjetas para mantener
+   una presentación más ordenada. */
+.proyecto-card a {
+    margin-top: auto;
+    padding-top: 10px;
+    font-weight: 700;
+    border-bottom: 1px solid var(--neon);
+}
+
+/* Separo cada categoría de habilidades para que
+   el contenido no quede demasiado junto. */
+.categoria-habilidades {
+    margin-top: 35px;
+}
+
+/* Resalto los títulos de las categorías con una línea
+   de color neón al lado izquierdo. */
+.categoria-habilidades h3 {
+    font-size: 1rem;
+    margin-bottom: 18px;
+    padding-left: 12px;
+    border-left: 3px solid var(--neon);
+}
+
+/* Organizo las habilidades en una cuadrícula que se adapta
+   al espacio disponible, igual que las tarjetas de proyectos. */
+.habilidades-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 190px), 1fr)
+    );
+    gap: 12px;
+}
+
+/* Defino el fondo, el borde y los espacios de cada tarjeta
+   donde muestro las tecnologías y herramientas que utilizo. */
+.habilidad-card {
+    background-color: rgba(68, 0, 90, 0.7);
+    border: 1px solid rgba(32, 245, 197, 0.6);
+    padding: 18px;
+    border-radius: 4px;
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* Resalto cada tarjeta cuando paso el cursor sobre ella. */
+.habilidad-card:hover {
+    border-color: var(--neon);
+    transform: translateY(-3px);
+}
+
+/* Ajusto el tamaño y el espacio de los títulos
+   y descripciones de las habilidades. */
+.habilidad-card h4 {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.habilidad-card p {
+    font-size: 1rem;
+    color: var(--texto-secundario);
+}
+
+/* Organizo el formulario de contacto en una sola columna
+   y limito su ancho para que no ocupe toda la pantalla. */
+#contacto form {
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Doy el mismo estilo a los campos de texto y al área
+   donde se escribe el mensaje. */
+#contacto input,
+#contacto textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: var(--morado);
+    color: var(--texto);
+    border: 1px solid rgba(32, 245, 197, 0.65);
+    border-radius: 3px;
+    font: inherit;
+    outline: none;
+}
+
+/* Cambio el color del texto de ayuda que aparece
+   dentro de los campos cuando están vacíos. */
+#contacto input::placeholder,
+#contacto textarea::placeholder {
+    color: var(--texto-secundario);
+}
+
+/* Cuando selecciono un campo para escribir,
+   resalto su borde y agrego un brillo suave. */
+#contacto input:focus,
+#contacto textarea:focus {
+    border-color: var(--neon);
+    box-shadow: 0 0 10px rgba(32, 245, 197, 0.15);
+}
+
+/* Defino una altura mínima para el espacio del mensaje
+   y permito modificar su tamaño verticalmente. */
+#contacto textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Ajusto la apariencia del botón para que conserve
+   los colores y la fuente utilizados en el portafolio. */
+#contacto button {
+    align-self: flex-start;
+    padding: 12px 28px;
+    background-color: transparent;
+    color: var(--neon);
+    border: 1px solid var(--neon);
+    border-radius: 3px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+/* Cambio el aspecto del botón cuando paso el cursor
+   sobre él para que se note que es interactivo. */
+#contacto button:hover {
+    background-color: var(--neon);
+    color: var(--fondo);
+    box-shadow: 0 0 15px rgba(32, 245, 197, 0.25);
+}
+
+/* Doy espacio al pie de página y centro el contenido
+   para que quede separado del resto del portafolio. */
+footer {
+    padding: 24px 16px;
+    text-align: center;
+    background-color: var(--fondo);
+}
+
+/* Ajusto el color y tamaño del texto que aparece
+   al final de la página. */
+footer p {
+    color: var(--texto-secundario);
+    font-size: 0.95rem;
+}
+
+/* Estos ajustes se aplican cuando la pantalla tiene
+   un ancho máximo de 768 píxeles. La idea es acomodar
+   el menú y las secciones para que se puedan visualizar bien. */
+@media (max-width: 768px) {
+
+    header {
+        padding: 16px;
+    }
+
+    /* Cambio la distribución del menú para colocar
+       sus elementos uno debajo del otro. */
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Ajusto los espacios entre los enlaces del menú
+       para que puedan acomodarse en pantallas pequeñas. */
+    .nav-links {
+        justify-content: flex-start;
+        gap: 12px 18px;
+    }
+
+    .nav-links a {
+        font-size: 0.65rem;
+    }
+
+    /* Reduzco el alto y los espacios de la sección de inicio. */
+    #inicio {
+        min-height: 300px;
+        padding: 48px 18px;
+    }
+
+    #inicio h1 {
+        letter-spacing: -1px;
+    }
+
+    /* También reduzco los espacios internos de las secciones
+       para aprovechar mejor el espacio disponible. */
+    #sobre-mi,
+    .seccion,
+    #contacto {
+        padding: 38px 18px;
+    }
+}
+
+/* Agrego otros ajustes para celulares con pantallas
+   todavía más pequeñas, de máximo 380 píxeles. */
+@media (max-width: 380px) {
+
+    /*body {
+        margin: 4px;
+    }*/
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 0.6rem;
+    }
+
+    /* Reduzco el tamaño del título para evitar
+       que ocupe demasiado espacio en estas pantallas. */
+    #inicio h1 {
+        font-size: 1.9rem;
+    }
+}
+
+/* En estas reglas preparo la sección de inicio
+   para poder colocar un efecto de brillo en su fondo. */
+#inicio {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+
+/* Repito el mismo efecto en la sección sobre mí
+   para mantener una apariencia similar entre secciones. */
+#sobre-mi {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+#sobre-mi::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(32, 245, 197, 0.12),
+        transparent 65%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Aplico el mismo efecto de iluminación en proyectos. */
+#proyectos {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+#proyectos::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(32, 245, 197, 0.12),
+        transparent 65%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Evito que las imágenes o el contenido de las tarjetas
+   se salgan de sus límites y ajusto el espacio inferior. */
+.proyecto-card {
+    overflow: hidden;
+    padding: 0 0 22px;
+}
+
+/* Ajusto las imágenes de los proyectos para que ocupen
+   todo el ancho de la tarjeta y mantengan una altura similar.
+   object-fit evita que se deformen. */
+.proyecto-imagen {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--neon);
+    transition: transform 0.4s ease;
+}
+
+/* Amplío ligeramente la imagen cuando paso el cursor
+   sobre la tarjeta del proyecto. */
+.proyecto-card:hover .proyecto-imagen {
+    transform: scale(1.04);
+}
+
+/* Agrego espacio a los textos y enlaces de las tarjetas
+   para que no queden pegados a los bordes. */
+.proyecto-card h3,
+.proyecto-card p,
+.proyecto-card > a {
+    margin-left: 22px;
+    margin-right: 22px;
+}
+
+.proyecto-card > a {
+    margin-top: auto;
+}
+
+/* Defino el tamaño de los iconos que utilizo
+   para representar las tecnologías y herramientas. */
+.tecnologia-icono {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    margin-bottom: 14px;
+    transition: transform 0.25s ease;
+}
+
+/* Hago que el icono se mueva y aumente un poco
+   cuando paso el cursor sobre una tarjeta de habilidad. */
+.habilidad-card:hover .tecnologia-icono {
+    transform: translateY(-4px) scale(1.08);
+}
+
+/* Preparo la sección de usuarios para organizar
+   el contenido que se obtiene desde la API. */
+#usuarios-api {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+/* Este panel agrupa la información de la API
+   y la separa visualmente del resto de la sección. */
+.api-panel {
+    margin-top: 28px;
+    padding: 22px;
+    background: rgba(36, 0, 47, 0.75);
+    border: 1px solid var(--neon);
+    border-radius: 8px;
+    min-width: 0;
+}
+
+/* Organizo el encabezado del panel y dejo espacio
+   para el indicador que acompaña su título. */
+.api-encabezado {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(32, 245, 197, 0.35);
+    color: var(--neon);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+}
+
+/* Creo un pequeño indicador circular de color neón
+   para acompañar el encabezado de la API. */
+.api-indicador {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+    background: var(--neon);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--neon);
+}
+
+/* Distribuyo el resumen de usuarios y el botón
+   para que se acomoden según el espacio disponible. */
+.api-resumen {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 20px 0;
+}
+
+.api-resumen strong {
+    color: var(--neon);
+}
+
+/* Defino la apariencia del botón que permite
+   volver a cargar la información de los usuarios. */
+#btn-recargar-usuario {
+    padding: 10px 16px;
+    background: transparent;
+    color: var(--neon);
+    border: 1px solid var(--neon);
+    border-radius: 4px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.25s ease,
+                color 0.25s ease;
+}
+
+/* Cambio los colores del botón cuando paso el cursor. */
+#btn-recargar-usuario:hover {
+    background: var(--neon);
+    color: var(--fondo);
+}
+
+/* Muestro un contorno cuando el botón recibe el foco
+   mediante el teclado, para facilitar su identificación. */
+#btn-recargar-usuario:focus-visible {
+    outline: 2px solid var(--neon-suave);
+    outline-offset: 4px;
+}
+
+/* Estos estilos cambian la apariencia del botón.
+   Actualmente se aplican siempre que el botón tenga este ID. */
+#btn-recargar-usuario.cargando {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* Organizo las tarjetas de usuarios en una cuadrícula
+   que se adapta al espacio disponible. */
+.usuarios-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 230px), 1fr)
+    );
+    gap: 18px;
+}
+
+/* Defino el diseño de cada tarjeta donde se muestra
+   la información recibida desde la API. */
+.usuario-card {
+    min-width: 0;
+    padding: 20px;
+    background: rgba(68, 0, 90, 0.8);
+    border: 1px solid rgba(32, 245, 197, 0.55);
+    border-radius: 6px;
+    overflow-wrap: anywhere;
+    transition: transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+/* Agrego un pequeño movimiento y brillo a las tarjetas
+   cuando paso el cursor sobre ellas. */
+.usuario-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--neon);
+    box-shadow: 0 0 16px rgba(32, 245, 197, 0.15);
+}
+
+/* Destaco el número que identifica a cada usuario
+   dentro de su tarjeta. */
+.usuario-numero {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 4px 9px;
+    color: var(--neon);
+    border: 1px solid rgba(32, 245, 197, 0.45);
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+.usuario-card h3 {
+    margin-bottom: 14px;
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+}
+
+.usuario-card p {
+    margin-top: 12px;
+    color: var(--texto-secundario);
+    font-size: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 6px;
+    align-items: baseline;
+}
+
+.usuario-card strong {
+    color: var(--neon-suave);
+    white-space: nowrap;
+}
+
+/* Este estilo se utiliza para mostrar mensajes dentro
+   de la cuadrícula, por ejemplo cuando se está cargando
+   la información o no hay usuarios para mostrar. */
+.api-mensaje {
+    grid-column: 1 / -1;
+    padding: 24px 12px;
+    color: var(--texto-secundario);
+    text-align: center;
+}
+
+/* Defino un color diferente para los mensajes de error. */
+.api-error {
+    color: #ffb4c0;
+}
+
+/* Adapto el panel de usuarios a pantallas pequeñas. */
+@media (max-width: 768px) {
+
+    .api-panel {
+        padding: 16px;
+    }
+
+    /* Coloco el resumen y el botón en columna
+       para que tengan más espacio en celulares. */
+    .api-resumen {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    /* Hago que el botón ocupe todo el ancho disponible. */
+    #btn-recargar-usuario {
+        width: 100%;
+    }
+
+    /* Muestro una sola tarjeta por fila en pantallas pequeñas. */
+    .usuarios-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Cambio el color del mensaje de estado cuando
+   se presenta algún error al consultar la API. */
+#estado.error {
+    color: #ffb4c0;
+}
+
+/* =========================================
+   12. FONDO GENERAL Y UNIDAD VISUAL
+   ========================================= */
+
+/* Utilizo una misma imagen como fondo del portafolio.
+   La capa morada encima ayuda a conservar los colores
+   del diseño y permite que los textos se sigan leyendo.
+body {
+    background:
+        linear-gradient(
+            rgba(36, 0, 47, 0.84),
+            rgba(36, 0, 47, 0.84)
+        ),
+        url("../img/fondo-tech.jpg") center center / cover fixed no-repeat;
+}*/
+
+/* Agrego un brillo suave en el centro de la sección
+   para conservar el estilo tecnológico y los tonos neón. */
+#inicio::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(32, 245, 197, 0.12),
+        transparent 65%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Mantengo las demás secciones con un fondo morado
+   semitransparente para que se pueda apreciar la imagen
+   general sin afectar la lectura del contenido. */
+#sobre-mi,
+#proyectos,
+#usuarios-api,
+#habilidades,
+#contacto {
+    background: rgba(36, 0, 47, 0.78);
+}
+
+/* Oscurezco un poco el encabezado y el pie de página
+   para diferenciarlos del resto del contenido. */
+header,
+footer {
+    background: rgba(36, 0, 47, 0.90);
+}
+
+/* Botones de la heladería */
+.btn-nebula {
+    background: linear-gradient(90deg, var(--morado-claro), var(--rosa));
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.btn-nebula:hover {
+    color: white;
+    box-shadow: 0 0 15px var(--rosa);
+}
+
+/* Tarjetas de productos */
+.tarjeta-nebula {
+    background: rgba(36, 0, 47, 0.75);
+    color: var(--texto);
+    border: 1px solid var(--morado-claro);
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tarjeta-nebula:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 18px rgba(167, 139, 250, 0.5);
+}
+/* ==============================
+   BARRA DE NAVEGACIÓN
+============================== */
+
+.navbar-nebula {
+    background: rgba(17, 19, 27, 0.90);
+    border-bottom: 1px solid rgba(167, 139, 250, 0.4);
+    box-shadow: 0 4px 20px rgba(167, 139, 250, 0.10);
+    padding: 15px 0;
+}
+
+.logo-nebula {
+    color: #F5F0FF !important;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo-nebula span {
+    color: #20F5C5;
+    text-shadow: 0 0 10px #20F5C5;
+}
+
+/* Estilos de los enlaces del menú */
+.navbar-nebula .navbar-nav .nav-link.link-nebula {
+    color: #D9D4E8 !important;
+    margin-left: 12px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Efecto al pasar el cursor */
+.navbar-nebula .navbar-nav .nav-link.link-nebula:hover {
+    color: #20F5C5 !important;
+    text-shadow: 0 0 10px #20F5C5;
+}
+
+/* Resalto la página que está seleccionada */
+.navbar-nebula .navbar-nav .nav-link.link-nebula.activo {
+    color: #FF4FD8 !important;
+    text-shadow: 0 0 10px #FF4FD8;
+    font-weight: bold;
+}
+/* ==============================
+   INICIO DE NEBULA CREAM
+============================== */
+
+.inicio-nebula {
+    padding: 65px 15px;
+}
+
+.inicio-nebula h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.subtitulo-nebula {
+    color: #FF4FD8;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.descripcion-nebula {
+    color: #C7C1D8;
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin: 20px auto;
+    line-height: 1.7;
+}
+
+.inicio-nebula .texto-neon {
+    color: #20F5C5;
+    text-shadow: 0 0 12px rgba(32, 245, 197, 0.7);
+}
+
+/* =========================================
+   CRUD DE INGREDIENTES - NEBULA CREAM
+========================================= */
+
+/* Contenedor principal */
+.ingredientes-contenedor {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 25px;
+}
+
+/* Título */
+.ingredientes-titulo {
+  color: var(--neon);
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  margin-bottom: 12px;
+  text-shadow: 0 0 12px rgba(32, 245, 197, 0.4);
+}
+
+/* Descripción */
+.ingredientes-descripcion {
+  color: var(--texto-secundario);
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+/* Formulario */
+.ingredientes-formulario {
+  background: rgba(36, 0, 47, 0.65);
+  border: 1px solid var(--morado-claro);
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 0 18px rgba(167, 139, 250, 0.12);
+  margin-bottom: 35px;
+}
+
+/* Subtítulos */
+.ingredientes-subtitulo {
+  color: var(--rosa);
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 20px;
+}
+
+/* Etiquetas */
+.ingredientes-formulario .form-label {
+  color: var(--texto);
+}
+
+/* Campos del formulario */
+.ingredientes-formulario .form-control {
+    background: #32143F;
+    border: 1px solid var(--morado-claro);
+    color: var(--texto);
+    border-radius: 8px;
+    padding: 11px 14px;
+}
+/* Campo numérico para cantidades y precios */
+.ingredientes-formulario input[type="number"] {
+    background-color: #32143F;
+    color: var(--texto);
+    border: 1px solid var(--morado-claro);
+    border-radius: 8px;
+    padding: 11px 14px;
+}
+
+/* Resalto el campo numérico cuando está seleccionado */
+.ingredientes-formulario input[type="number"]:focus {
+    background-color: #32143F;
+    color: var(--texto);
+    border-color: var(--neon);
+    box-shadow: 0 0 10px rgba(32, 245, 197, 0.25);
+    outline: none;
+}
+
+/* Texto de ayuda dentro de los campos */
+.ingredientes-formulario .form-control::placeholder {
+    color: #B9A9C9;
+}
+
+/* Efecto al seleccionar un campo */
+.ingredientes-formulario .form-control:focus {
+    background: #32143F;
+    color: var(--texto);
+    border-color: var(--neon);
+    box-shadow: 0 0 10px rgba(32, 245, 197, 0.25);
+    outline: none;
+}
+
+/* Botón principal del CRUD */
+.ingredientes-formulario .btn-nebula {
+    background: linear-gradient(90deg, var(--morado-claro), var(--rosa));
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.ingredientes-formulario .btn-nebula:hover {
+    color: white;
+    box-shadow: 0 0 15px var(--rosa);
+}
+
+/* Tarjetas */
+.ingrediente-card {
+  height: 100%;
+  padding: 20px;
+  background: rgba(36, 0, 47, 0.65);
+  border: 1px solid var(--morado-claro);
+  border-radius: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ingrediente-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 18px rgba(255, 79, 216, 0.2);
+}
+
+/* Nombre del ingrediente */
+.ingrediente-card h5 {
+  color: var(--neon);
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Información */
+.ingrediente-card p {
+  color: var(--texto-secundario);
+}
+
+/* Mensajes */
+.mensaje-nebula {
+  background: rgba(32, 245, 197, 0.1);
+  border: 1px solid var(--neon);
+  color: var(--neon);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
